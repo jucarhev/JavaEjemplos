@@ -46,18 +46,18 @@ class laminaProcesador extends JPanel{
         estilo = new JMenu("Estilo");
         tamagno = new JMenu("Tamaño");
         
-        Configura_Menus("Arial","Fuente","Arial",9,12);
-        Configura_Menus("Verdana","Fuente","Verdana",9,12);
-        Configura_Menus("Courier","Fuente","Courier",9,12);
+        Configura_Menus("Arial","Fuente","Arial",9,12,"");
+        Configura_Menus("Verdana","Fuente","Verdana",9,12,"");
+        Configura_Menus("Courier","Fuente","Courier",9,12,"");
         
-        Configura_Menus("Negrita","Estilo","",Font.BOLD,12);
-        Configura_Menus("Cursiva","Estilo","",Font.ITALIC,12);
+        Configura_Menus("Negrita","Estilo","",Font.BOLD,12,"/Procesador/img/negrita");
+        Configura_Menus("Cursiva","Estilo","",Font.ITALIC,12,"/Procesador/img/cursiva");
         
-        Configura_Menus("12","Tamaño","",0,12);
-        Configura_Menus("14","Tamaño","",0,14);
-        Configura_Menus("16","Tamaño","",0,16);
-        Configura_Menus("18","Tamaño","",0,18);
-        Configura_Menus("20","Tamaño","",0,20);
+        Configura_Menus("12","Tamaño","",0,12,"");
+        Configura_Menus("14","Tamaño","",0,14,"");
+        Configura_Menus("16","Tamaño","",0,16,"");
+        Configura_Menus("18","Tamaño","",0,18,"");
+        Configura_Menus("20","Tamaño","",0,20,"");
         
         barraMenu.add(fuente);
         barraMenu.add(estilo);
@@ -72,8 +72,13 @@ class laminaProcesador extends JPanel{
         add(miarea, BorderLayout.CENTER);
     }
     
-    public void Configura_Menus(String rotulo, String menu, String tipo_letra, int estilos, int tam){
-        JMenuItem elem_menu = new JMenuItem(rotulo);
+    public void Configura_Menus(String rotulo, String menu, String tipo_letra, int estilos, int tam,String img){
+        JMenuItem elem_menu;
+        if(img != ""){
+            elem_menu = new JMenuItem(rotulo, new ImageIcon(getClass().getResource(img)));
+        }else{
+            elem_menu = new JMenuItem(rotulo);
+        }
         if (menu == "Fuente") {
             fuente.add(elem_menu);
             elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("tipo letra", tipo_letra));
